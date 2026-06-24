@@ -70,6 +70,12 @@ nav a {
   color: white;
   text-decoration: none;
   margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  color: var(--star-gold);
 }
 
 footer {
@@ -85,10 +91,6 @@ footer {
   display: block;
   min-height: 100vh;
   padding: 40px 20px;
-}
-
-.page:target {
-  display: block;
 }
 
 .hero {
@@ -120,7 +122,14 @@ footer {
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 0 8px rgba(0,0,0,.15);
+  transition: transform 0.3s ease-in-out;
 }
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+/* Pseudo-element Requirement */
 
 .card::before {
   content: "🇺🇸";
@@ -142,10 +151,14 @@ footer {
     white 10px,
     white 20px
   );
+
+  animation: wave 2s ease-in-out infinite;
+  transform-origin: left center;
 }
 
 .eagle {
   font-size: 4rem;
+  animation: fly 4s ease-in-out infinite alternate;
 }
 
 .star {
@@ -165,4 +178,36 @@ footer {
   border-radius: 8px;
 
   text-decoration: none;
+
+  transition: background 0.3s ease;
+}
+
+.next-btn:hover {
+  background: var(--patriot-blue);
+}
+
+/* Animations */
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(4deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translateX(-20px);
+  }
+
+  100% {
+    transform: translateX(20px);
+  }
 }
