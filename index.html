@@ -1,124 +1,303 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stars & Stripes Canvas</title>
-
-```
-<link rel="stylesheet" href="stars_and_stripes.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
-```
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stars & Stripes Canvas</title>
+  <link rel="stylesheet" href="stars_and_stripes.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
 <header>
-    <h1>🇺🇸 Stars & Stripes Canvas 🇺🇸</h1>
-
-```
-<nav>
+  <h1><img src="images/flag.png" alt="American Flag" class="header-flag"> Stars &amp; Stripes Canvas <img src="images/flag.png" alt="American Flag" class="header-flag"></h1>
+  <nav>
     <a href="#freedom">Freedom's Dawn</a>
     <a href="#plaza">Patriot's Plaza</a>
     <a href="#united">United We Stand</a>
-</nav>
-```
-
+  </nav>
 </header>
 
 <main>
 
-```
-<section id="freedom" class="page">
+  <!-- PAGE 1: Freedom's Dawn — Town Square Flag Ceremony -->
+  <section id="freedom" class="page">
 
     <div class="hero">
-        <h2>Freedom's Dawn</h2>
+      <h2>Freedom's Dawn</h2>
+      <p>As the sun rises over the town square, the nation gathers in solemn pride to watch the Stars and Stripes ascend.</p>
+    </div>
 
-        <p>
-            Welcome to our Independence Day storybook. Follow the journey
-            through a day of patriotism, celebration, and American pride.
-        </p>
+    <!-- Town Square Scene -->
+    <div class="town-square-scene" aria-label="Town square flag ceremony scene">
+
+      <!-- Sky layer -->
+      <div class="sky">
+        <div class="sun"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="star-field">
+          <span class="sky-star" style="top:10%;left:15%;animation-delay:0s">★</span>
+          <span class="sky-star" style="top:20%;left:40%;animation-delay:.4s">★</span>
+          <span class="sky-star" style="top:8%;left:65%;animation-delay:.8s">★</span>
+          <span class="sky-star" style="top:18%;left:80%;animation-delay:.2s">★</span>
+          <span class="sky-star" style="top:5%;left:90%;animation-delay:.6s">★</span>
+        </div>
+      </div>
+
+      <!-- Buildings with bunting -->
+      <div class="buildings">
+        <div class="building building-left">
+          <div class="bunting bunting-left"></div>
+          <div class="window"></div>
+          <div class="window"></div>
+        </div>
+        <div class="building building-right">
+          <div class="bunting bunting-right"></div>
+          <div class="window"></div>
+          <div class="window"></div>
+        </div>
+      </div>
+
+      <!-- Flagpole & rising flag -->
+      <div class="flagpole-area">
+        <div class="flagpole">
+          <div class="pole-ball"></div>
+          <div class="flag-container">
+              <img src="images/flag.png" alt="American Flag" class="flag-scene">
+            </div>
+        </div>
+      </div>
+
+      <!-- Doves taking flight -->
+      <div class="doves-group" aria-hidden="true">
+        <span class="dove dove-1">🕊️</span>
+        <span class="dove dove-2">🕊️</span>
+        <span class="dove dove-3">🕊️</span>
+      </div>
+
+      <!-- Ground crowd -->
+      <div class="crowd-row">
+        <div class="crowd-section crowd-veterans">
+          <img src="images/veterans.jpg" alt="Veterans in uniform" class="scene-img veterans-img">
+        </div>
+        <div class="crowd-section crowd-families">
+          <img src="images/crowd.png" alt="Crowd of spectators" class="scene-img crowd-img">
+        </div>
+        <div class="crowd-section crowd-band">
+          <img src="images/marching.png" alt="Marching band" class="scene-img band-img">
+        </div>
+      </div>
+
+      <!-- Ground -->
+      <div class="ground"></div>
     </div>
 
     <div class="content-grid">
-
-        <div class="card">
-            <h3>American Flag</h3>
-            <div class="flag"></div>
-            <p>The American flag proudly waves as the sun rises.</p>
-        </div>
-
-        <div class="card">
-            <h3>Bald Eagle</h3>
-            <div class="eagle">🦅</div>
-            <p>A bald eagle flies through the morning sky.</p>
-        </div>
-
-        <div class="card">
-            <h3>Shining Stars</h3>
-            <div class="star">⭐</div>
-            <p>Stars represent the unity of the fifty states.</p>
-        </div>
-
+      <div class="card" tabindex="0">
+        <h3>The Flag Rises</h3>
+        <img src="images/flag.png" alt="American Flag" class="flag-img">
+        <p>American flag slowly rising up a tall flagpole</p>
+      </div>
+      <div class="card" tabindex="0">
+        <h3>Veterans Salute</h3>
+        <img src="images/veterans.jpg" alt="Veterans saluting" class="card-img">
+        <p>Veterans in uniform and crowd stand at standing at attention facing the flag</p>
+      </div>
+      <div class="card" tabindex="0">
+        <h3>Marching Band</h3>
+        <img src="images/marching.png" alt="Marching band playing" class="card-img">
+        <p>A small marching band playing in the corner filling the square with patriotic music.</p>
+      </div>
     </div>
 
-    <a class="next-btn" href="#plaza">Next Page →</a>
+    <a class="next-btn" href="#plaza">Next: Patriot's Plaza →</a>
+  </section>
 
-</section>
 
+<!-- PAGE 2: Patriot's Plaza -->
 <section id="plaza" class="page">
 
-    <div class="hero">
-        <h2>Patriot's Plaza</h2>
+  <div class="hero">
+    <h2>Patriot's Plaza</h2>
+    <p>
+      The town erupts in celebration — parades, music, and patriotic spirit fill every corner of the plaza.
+    </p>
+  </div>
 
-        <p>
-            The town gathers together for a patriotic parade filled with
-            music, decorations, and celebration.
-        </p>
+  <!-- Parade street scene -->
+  <div class="parade-scene" aria-label="Parade scene">
+
+    <div class="parade-sky">
+      <div class="confetti-piece" style="left:5%; animation-delay:0s; background:#BF0A30;"></div>
+      <div class="confetti-piece" style="left:15%; animation-delay:.3s; background:#002868;"></div>
+      <div class="confetti-piece" style="left:25%; animation-delay:.6s; background:#FFD700;"></div>
+      <div class="confetti-piece" style="left:35%; animation-delay:.1s; background:#BF0A30;"></div>
+      <div class="confetti-piece" style="left:45%; animation-delay:.5s; background:white;"></div>
+      <div class="confetti-piece" style="left:55%; animation-delay:.2s; background:#002868;"></div>
+      <div class="confetti-piece" style="left:65%; animation-delay:.7s; background:#FFD700;"></div>
+      <div class="confetti-piece" style="left:75%; animation-delay:.4s; background:#BF0A30;"></div>
+      <div class="confetti-piece" style="left:85%; animation-delay:.9s; background:white;"></div>
+      <div class="confetti-piece" style="left:95%; animation-delay:.15s; background:#002868;"></div>
+    </div>
+
+    <div class="parade-road">
+      <div class="parade-lane">
+        <img src="images/parade.png"
+             alt="Parade float"
+             class="parade-vehicle parade-float-img">
+
+        <img src="images/marching.png"
+             alt="Marching band"
+             class="parade-vehicle parade-march-img">
+
+        <img src="images/dog.png"
+             alt="Dog in parade"
+             class="parade-vehicle parade-dog-img">
+      </div>
+    </div>
+
+    <div class="sidewalk-crowd">
+      <img src="images/crowd.png"
+           alt="Cheering crowd"
+           class="sidewalk-crowd-img">
+    </div>
+
+  </div>
+
+  <!-- Content Cards -->
+  <div class="content-grid">
+
+    <div class="card" tabindex="0">
+      <h3>Parade Float</h3>
+
+      <img src="images/parade.png"
+           alt="Parade float"
+           class="card-img">
+
+      <p>
+        A USA decorated float rolls, draped in red,
+        white, and blue streamers.
+      </p>
+    </div>
+
+    <div class="card" tabindex="0">
+      <h3>Marching Band</h3>
+
+      <img src="images/marching.png"
+           alt="Marching band"
+           class="card-img">
+
+      <p>
+        The marching band fills the air with proud patriotic
+        anthems during the parade
+      </p>
+    </div>
+
+    <div class="card" tabindex="0">
+      <h3>Family Dog</h3>
+
+      <img src="images/dog.png"
+           alt="Family dog"
+           class="card-img">
+
+      <p>
+        Even the family pets joins in on the parade.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="baton-twirlers" aria-hidden="true">
+    <span class="twirler">🎀</span>
+    <span class="twirler" style="animation-delay:.3s;">🎀</span>
+    <span class="twirler" style="animation-delay:.6s;">🎀</span>
+  </div>
+
+  <a class="next-btn" href="#united">
+    Final Chapter: United We Stand →
+  </a>
+
+</section>
+  
+<!-- PAGE 3: United We Stand -->
+  <section id="united" class="page">
+
+    <div class="hero hero-dark">
+      <h2 class="hero-gold">United We Stand</h2>
+      <p>As night falls over America, the sky ignites in a grand finale of light, color, and national pride. One nation. One people. Forever free.</p>
+    </div>
+
+    <!-- Night fireworks scene -->
+    <div class="fireworks-scene" aria-label="Fireworks finale scene">
+      <div class="night-sky">
+        <span class="night-star" style="top:5%;left:10%;animation-delay:0s">✦</span>
+        <span class="night-star" style="top:12%;left:30%;animation-delay:.5s">✦</span>
+        <span class="night-star" style="top:8%;left:50%;animation-delay:1s">✦</span>
+        <span class="night-star" style="top:15%;left:70%;animation-delay:.3s">✦</span>
+        <span class="night-star" style="top:6%;left:88%;animation-delay:.8s">✦</span>
+        <span class="night-star" style="top:20%;left:20%;animation-delay:.2s">✦</span>
+        <span class="night-star" style="top:18%;left:60%;animation-delay:.7s">✦</span>
+        <span class="night-star" style="top:3%;left:80%;animation-delay:1.2s">✦</span>
+      </div>
+
+      <img src="images/firework.gif" alt="Fireworks" class="firework-gif gif-1" aria-hidden="true">
+      <img src="images/firework2.gif" alt="Fireworks" class="firework-gif gif-2" aria-hidden="true">
+      <img src="images/firework.gif" alt="Fireworks" class="firework-gif gif-3" aria-hidden="true">
+      <img src="images/firework2.gif" alt="Fireworks" class="firework-gif gif-4" aria-hidden="true">
+
+      <div class="skyline">
+        <div class="skyline-building" style="height:80px;width:40px;left:5%"></div>
+        <div class="skyline-building" style="height:120px;width:50px;left:12%"></div>
+        <div class="skyline-building" style="height:90px;width:35px;left:20%"></div>
+        <div class="skyline-building" style="height:140px;width:55px;left:27%"></div>
+        <div class="skyline-building" style="height:100px;width:40px;left:35%"></div>
+        <div class="skyline-building" style="height:130px;width:45px;right:30%"></div>
+        <div class="skyline-building" style="height:95px;width:38px;right:22%"></div>
+        <div class="skyline-building" style="height:150px;width:50px;right:14%"></div>
+        <div class="skyline-building" style="height:85px;width:42px;right:6%"></div>
+      </div>
+
+      <div class="waterfront-crowd">
+        <img src="images/crowd.png" alt="Crowd watching fireworks" class="waterfront-crowd-img">
+      </div>
+    </div>
+
+    <div class="unity-statement">
+      <blockquote>
+        "We hold these truths to be self-evident, that all men are created equal."
+        <cite>— Declaration of Independence, 1776</cite>
+      </blockquote>
     </div>
 
     <div class="content-grid">
-
-        <div class="card">
-            <h3>Parade Float</h3>
-            <div class="float">🚚</div>
-            <p>A decorated parade float travels down Main Street.</p>
-        </div>
-
-        <div class="card">
-            <h3>Marching Band</h3>
-            <div class="band">🥁 🎺</div>
-            <p>The marching band performs patriotic music.</p>
-        </div>
-
-        <div class="card">
-            <h3>Family Dog</h3>
-            <div class="dog">🐶</div>
-            <p>Families bring their pets to enjoy the celebration.</p>
-        </div>
-
+      <div class="card card-dark" tabindex="0">
+        <h3>Fireworks Grand Finale</h3>
+        <img src="images/firework2.gif" alt="Fireworks" class="card-img">
+        <p>The night sky lights up with the colors of the American Flag.</p>
+      </div>
+      <div class="card card-dark" tabindex="0">
+        <h3>Veterans & Heroes</h3>
+        <img src="images/veterans.jpg" alt="Veterans in uniform" class="card-img">
+        <p>We honor every man and woman who served to protect the freedoms we celebrate today.</p>
+      </div>
     </div>
 
-    <div class="confetti">
-        🎉 🎊 🎉 🎊 🎉
+    <div class="finale-stars" aria-hidden="true">
+      <span class="finale-star" style="animation-delay:0s">⭐</span>
+      <span class="finale-star" style="animation-delay:.2s">⭐</span>
+      <span class="finale-star" style="animation-delay:.4s">⭐</span>
+      <span class="finale-star" style="animation-delay:.6s">⭐</span>
+      <span class="finale-star" style="animation-delay:.8s">⭐</span>
     </div>
 
-    <a class="next-btn" href="#united">Next Page →</a>
-
-</section>
-
-<section id="united" class="page">
-</section>
-```
+    <a class="next-btn" href="#freedom">← Start Over: Freedom's Dawn</a>
+  </section>
 
 </main>
 
-<footer>
-    <p>Stars & Stripes Canvas</p>
-</footer>
+
 
 </body>
 </html>

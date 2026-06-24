@@ -1,10 +1,12 @@
-/* 4th of July Color Palette & Variables */
 :root {
-  --patriot-blue: #002868;
-  --liberty-red: #BF0A30;
-  --star-gold: #FFD700;
-  --cannon-smoke: #1a1a2e;
-  --parchment: #f5f0e8;
+  --patriot-blue:  #002868;
+  --liberty-red:   #BF0A30;
+  --star-gold:     #FFD700;
+  --cannon-smoke:  #1a1a2e;
+  --parchment:     #f5f0e8;
+  --sky-blue:      #87ceeb;
+  --dawn-orange:   #f4a261;
+  --night-blue:    #0b0c2a;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -12,7 +14,7 @@
   --space-4: 2rem;
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -22,288 +24,960 @@ body {
   background: var(--parchment);
   font-family: "Open Sans", sans-serif;
   color: var(--cannon-smoke);
+  overflow-x: hidden;
 }
 
 header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
   background: var(--patriot-blue);
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: var(--space-3) var(--space-4);
+  box-shadow: 0 3px 12px rgba(0,0,0,.4);
 }
 
 header h1 {
   font-family: "Oswald", sans-serif;
+  font-size: 1.6rem;
   color: var(--star-gold);
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 6px rgba(0,0,0,.4);
 }
 
 nav {
-  margin-top: 10px;
+  margin-top: var(--space-2);
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 nav a {
   color: white;
   text-decoration: none;
-  margin: 0 10px;
-  transition: color 0.3s ease, transform 0.3s ease;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: color 0.3s ease, transform 0.3s ease, background 0.3s ease;
   display: inline-block;
+  will-change: transform;
 }
 
 nav a:hover,
 nav a:focus {
   color: var(--star-gold);
+  background: rgba(255,255,255,0.1);
   transform: scale(1.1);
   outline: 2px solid var(--star-gold);
+  outline-offset: 2px;
 }
 
-/* CSS-only page navigation */
 .page {
   display: none;
   min-height: 100vh;
-  padding: 40px 20px;
+  padding: var(--space-4) var(--space-3);
 }
 
-.page:target {
-  display: block;
-}
+.page:target { display: block; }
 
-/* Shows first page before clicking */
-.page:first-of-type {
-  display: block;
-}
+
+#freedom { display: block; }
 
 body:has(#plaza:target) #freedom,
-body:has(#united:target) #freedom {
-  display: none;
+body:has(#united:target) #freedom { display: none; }
+
+
+#freedom {
+  background: linear-gradient(to bottom, var(--sky-blue) 0%, var(--dawn-orange) 40%, var(--parchment) 100%);
+}
+
+#plaza {
+  background: linear-gradient(to bottom, #e8f4f8 0%, var(--parchment) 60%, white 100%);
+}
+
+#united {
+  background: linear-gradient(to bottom, var(--night-blue) 0%, #1a1a3e 60%, #0b0c1a 100%);
+  color: white;
 }
 
 .hero {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: var(--space-4);
+  padding: var(--space-3) 0;
 }
 
 .hero h2 {
-  color: var(--liberty-red);
   font-family: "Oswald", sans-serif;
-  font-size: 3rem;
-  margin-bottom: 15px;
-  animation: titlePop 1s ease-in-out;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--liberty-red);
+  margin-bottom: var(--space-3);
+  text-shadow: 2px 2px 0 rgba(0,0,0,.08);
+  animation: titlePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  will-change: transform, opacity;
+}
+
+.hero-dark p { color: rgba(255,255,255,0.85); }
+
+.hero-gold {
+  color: var(--star-gold) !important;
+  text-shadow: 0 0 30px rgba(255,215,0,0.5), 2px 2px 0 rgba(0,0,0,.3) !important;
 }
 
 .hero p {
-  max-width: 700px;
-  margin: auto;
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--cannon-smoke);
 }
 
-#freedom {
-  background: linear-gradient(to bottom, #87ceeb, #f5f0e8);
+.town-square-scene {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto var(--space-4);
+  height: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--patriot-blue);
+  box-shadow: 0 8px 32px rgba(0,0,0,.25);
 }
 
-#plaza {
-  background: linear-gradient(to bottom, #f5f0e8, white);
+.sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, #4a90d9 0%, #87ceeb 50%, var(--dawn-orange) 100%);
 }
 
-#united {
-  background: linear-gradient(to bottom, #002868, #1a1a2e);
+.sun {
+  position: absolute;
+  top: 14%;
+  right: 8%;
+  width: 54px;
+  height: 54px;
+  background: radial-gradient(circle, #fff9c4 30%, #FFD700 70%, transparent 100%);
+  border-radius: 50%;
+  animation: sunRise 6s ease-out both;
+  will-change: transform, opacity;
+  box-shadow: 0 0 30px 10px rgba(255,215,0,.4);
+}
+
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 50px;
+  opacity: 0.85;
+  will-change: transform;
+}
+
+.cloud::before, .cloud::after {
+  content: "";
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
+
+.cloud-1 {
+  width: 90px; height: 30px; top: 15%; left: 5%;
+  animation: cloudDrift 18s linear infinite;
+}
+.cloud-1::before { width: 50px; height: 45px; top: -22px; left: 12px; }
+.cloud-1::after  { width: 35px; height: 35px; top: -16px; left: 38px; }
+
+.cloud-2 {
+  width: 70px; height: 24px; top: 25%; left: 40%;
+  animation: cloudDrift 25s linear infinite;
+  animation-delay: -8s;
+}
+.cloud-2::before { width: 40px; height: 36px; top: -18px; left: 10px; }
+.cloud-2::after  { width: 28px; height: 28px; top: -12px; left: 32px; }
+
+.cloud-3 {
+  width: 60px; height: 20px; top: 10%; left: 65%;
+  animation: cloudDrift 20s linear infinite;
+  animation-delay: -12s;
+}
+.cloud-3::before { width: 35px; height: 32px; top: -16px; left: 8px; }
+.cloud-3::after  { width: 24px; height: 24px; top: -10px; left: 28px; }
+
+/* Stars fading with sunrise */
+.star-field { position: absolute; inset: 0; }
+
+.sky-star {
+  position: absolute;
+  color: var(--star-gold);
+  font-size: 0.75rem;
+  animation: starFade 4s ease-in-out infinite alternate;
+  will-change: opacity;
+}
+
+/* Buildings with bunting */
+.buildings {
+  position: absolute;
+  bottom: 80px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.building {
+  width: 130px;
+  height: 160px;
+  background: #8B7355;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+  gap: 14px;
+}
+
+.building-left { border-radius: 4px 4px 0 0; background: #9B8465; }
+.building-right { border-radius: 4px 4px 0 0; background: #7B6345; }
+
+.window {
+  width: 28px;
+  height: 34px;
+  background: #ffd97d;
+  border-radius: 3px 3px 0 0;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.2);
+  animation: windowGlow 3s ease-in-out infinite alternate;
+  will-change: opacity;
+}
+
+/* Patriotic bunting */
+.bunting {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 20px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--liberty-red) 0px, var(--liberty-red) 20px,
+    white 20px, white 40px,
+    var(--patriot-blue) 40px, var(--patriot-blue) 60px
+  );
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 85% 50%, 75% 100%, 65% 50%, 55% 100%, 45% 50%, 35% 100%, 25% 50%, 15% 100%, 5% 50%);
+  animation: buntingWave 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Flagpole */
+.flagpole-area {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.flagpole {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pole-ball {
+  width: 14px;
+  height: 14px;
+  background: var(--star-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--star-gold);
+  z-index: 2;
+}
+
+.flagpole::after {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 260px;
+  background: linear-gradient(to right, #aaa, #eee, #aaa);
+  border-radius: 2px;
+}
+
+/* Rising Flag */
+.flag-container {
+  position: absolute;
+  top: 14px;
+  left: 4px;
+  animation: flagRise 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both;
+  will-change: transform, opacity;
+}
+
+
+/* Doves */
+.doves-group {
+  position: absolute;
+  top: 18%;
+  left: 22%;
+}
+
+.dove {
+  position: absolute;
+  font-size: 1.4rem;
+  will-change: transform, opacity;
+}
+
+.dove-1 { animation: doveFlight 5s ease-in-out 1s both; }
+.dove-2 { animation: doveFlight 5s ease-in-out 1.6s both; left: 30px; }
+.dove-3 { animation: doveFlight 5s ease-in-out 2.2s both; left: 60px; }
+
+/* Crowd */
+.crowd-row {
+  position: absolute;
+  bottom: 82px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 10px;
+  z-index: 2;
+}
+
+.crowd-section { display: flex; gap: 6px; align-items: flex-end; vertical-align: bottom; }
+
+.figure { font-size: 1.6rem; display: inline-block; will-change: transform; }
+
+.veteran { animation: salute 2.5s ease-in-out infinite; }
+.child   { animation: bounce 1.8s ease-in-out infinite; }
+.pet     { animation: tailWag 1.2s ease-in-out infinite; }
+.band-member { animation: bandStep 1s ease-in-out infinite; }
+
+/* Ground */
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 82px;
+  background: linear-gradient(to bottom, #5a7a3a 0%, #4a6a2a 100%);
+  border-top: 3px solid #3a5a1a;
+}
+
+
+.parade-scene {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto var(--space-4);
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--patriot-blue);
+  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+  background: linear-gradient(to bottom, #d0e8f8 0%, #e8f4e0 60%, #7a9a5a 100%);
+}
+
+/* Confetti falling */
+.parade-sky {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+  animation: confettiFall 3s ease-in infinite;
+  will-change: transform, opacity;
+}
+
+.confetti-piece:nth-child(odd)  { animation-duration: 2.5s; }
+.confetti-piece:nth-child(3n)   { animation-duration: 3.5s; border-radius: 50%; }
+
+/* Parade road */
+.parade-road {
+  position: absolute;
+  bottom: 60px;
+  left: 0; right: 0;
+  height: 80px;
+  background: #888;
+  border-top: 4px solid #bbb;
+  border-bottom: 4px solid #bbb;
+}
+
+.parade-lane {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 60px;
+  animation: paradeMove 25s linear infinite;
+  will-change: transform;
+  width: max-content;
+  transform: translateX(-100vw);
+}
+
+.parade-vehicle { font-size: 2.8rem; display: inline-block; }
+.motorcycle { animation: vehicleBounce 0.4s ease-in-out infinite; }
+.float-truck { animation: vehicleBounce 0.5s ease-in-out infinite; animation-delay:.1s; }
+.horse      { animation: horseGallop 0.6s ease-in-out infinite; }
+
+/* Sidewalk crowd */
+.sidewalk-crowd {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #5a7a3a;
+  padding: 0 10px;
+}
+
+.sidewalk-person { font-size: 1.5rem; animation: cheer 1.5s ease-in-out infinite; will-change: transform; }
+.child-wave      { animation: childWave 1s ease-in-out infinite; }
+.sparkler-waver  { animation: sparklerWave 0.8s ease-in-out infinite; }
+
+/* Baton twirlers */
+.baton-twirlers {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  margin: var(--space-3) 0;
+}
+
+.twirler {
+  font-size: 2rem;
+  animation: twirl 0.8s linear infinite;
+  display: inline-block;
+  will-change: transform;
+}
+
+.fireworks-scene {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto var(--space-4);
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid var(--star-gold);
+  box-shadow: 0 0 40px rgba(255,215,0,.2), 0 8px 32px rgba(0,0,0,.4);
+  background: var(--night-blue);
+}
+
+.night-sky { position: absolute; inset: 0; }
+
+.night-star {
+  position: absolute;
   color: white;
+  font-size: 0.7rem;
+  animation: twinkle 2s ease-in-out infinite alternate;
+  will-change: opacity;
 }
+
+/* Firework bursts */
+.firework-burst {
+  position: absolute;
+  font-size: 3.5rem;
+  will-change: transform, opacity;
+}
+
+.burst-1 { top: 10%; left: 15%;  animation: burst 2.8s ease-in-out 0s    infinite; }
+.burst-2 { top: 5%;  left: 45%;  animation: burst 2.8s ease-in-out 0.7s  infinite; }
+.burst-3 { top: 15%; left: 70%;  animation: burst 2.8s ease-in-out 1.4s  infinite; }
+.burst-4 { top: 25%; left: 30%;  animation: burst 2.8s ease-in-out 2.1s  infinite; }
+.burst-5 { top: 8%;  left: 85%;  animation: burst 2.8s ease-in-out 0.35s infinite; }
+
+/* City skyline */
+.skyline {
+  position: absolute;
+  bottom: 55px;
+  left: 0; right: 0;
+  height: 160px;
+}
+
+.skyline-building {
+  position: absolute;
+  bottom: 0;
+  background: #2a2d50;
+  border-top: 3px solid #5a5e90;
+  box-shadow: inset -2px 0 8px rgba(0,0,0,.3);
+}
+
+.skyline-building::before {
+  content: "";
+  position: absolute;
+  top: 12px; left: 6px; right: 6px;
+  height: 8px;
+  background: rgba(255,220,80,0.25);
+  box-shadow: 0 18px 0 rgba(255,220,80,0.18), 0 36px 0 rgba(255,220,80,0.12);
+}
+
+/* Waterfront crowd */
+.waterfront-crowd {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  height: 80px;
+  z-index: 2;
+}
+
+.waterfront-crowd-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.watcher { font-size: 1.5rem; animation: watcherSway 3s ease-in-out infinite; will-change: transform; }
+
+/* Unity quote */
+.unity-statement {
+  max-width: 700px;
+  margin: 0 auto var(--space-4);
+  text-align: center;
+}
+
+.unity-statement blockquote {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  color: var(--star-gold);
+  border-left: 4px solid var(--liberty-red);
+  padding: var(--space-3) var(--space-4);
+  font-style: italic;
+  background: rgba(255,255,255,0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+.unity-statement cite {
+  display: block;
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.6);
+  font-style: normal;
+}
+
+/* Finale stars */
+.finale-stars {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+}
+
+.finale-star {
+  font-size: 2rem;
+  animation: sparkle 1.5s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
 
 .content-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  max-width: 900px;
+  margin: 0 auto var(--space-4);
+}
+
+#united .content-grid {
+  grid-template-columns: repeat(2, 320px);
+  justify-content: center;
+  gap: 30px;
 }
 
 .card {
   background: white;
   color: var(--cannon-smoke);
-  padding: 30px;
-  border-radius: 10px;
+  padding: var(--space-4) var(--space-3);
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 0 8px rgba(0,0,0,.15);
-  transition: transform .3s ease-in-out;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  border-top: 4px solid var(--liberty-red);
+  will-change: transform;
 }
 
 .card:hover,
 .card:focus-within {
   transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0,0,0,.2);
 }
 
 .card::before {
-  content: "🇺🇸";
+  content: "";
   display: block;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  width: 36px;
+  height: 22px;
+  background: url('assets/images/flag.png') center/contain no-repeat;
+  margin: 0 auto var(--space-2);
 }
 
-.flag {
-  width: 180px;
-  height: 100px;
-  margin: 15px auto;
-  background: repeating-linear-gradient(
-    to bottom,
-    var(--liberty-red) 0px,
-    var(--liberty-red) 10px,
-    white 10px,
-    white 20px
-  );
-  animation: wave 2s ease-in-out infinite;
+.card h3 {
+  font-family: "Oswald", sans-serif;
+  color: var(--patriot-blue);
+  margin-bottom: var(--space-2);
+  font-size: 1.15rem;
+}
+
+.card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Dark card variant for page 3 */
+.card-dark {
+  background: rgba(255,255,255,0.07);
+  color: white;
+  border-top-color: var(--star-gold);
+}
+
+.card-dark h3 { color: var(--star-gold); }
+.card-dark p  { color: rgba(255,255,255,0.75); }
+.card-dark::before { content: "⭐"; }
+
+
+.eagle, .float, .dog, .veterans, .doves, .fireworks, .band {
+  font-size: 3.5rem;
+  margin: var(--space-2) 0;
+  display: block;
+  will-change: transform, opacity;
+}
+
+.scene-img {
+  object-fit: contain;
+  will-change: transform;
+  display: block;
+}
+
+.veterans-img {
+  height: 130px;
+  animation: salute 2.5s ease-in-out infinite;
+}
+
+.crowd-img {
+  height: 170px;
+  animation: bounce 3s ease-in-out infinite;
+  object-fit: contain;
+  object-position: bottom;
+  vertical-align: bottom;
+  display: block;
+  position: relative;
+  top: 50px;   
+}
+
+.band-img {
+  height: 130px;
+  animation: bandStep 1s ease-in-out infinite;
+}
+
+.sidewalk-crowd-img {
+  height: 55px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  animation: cheer 2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.card-img {
+  width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  margin: var(--space-2) 0;
+  display: block;
+}
+
+.firework-gif {
+  position: absolute;
+  will-change: transform, opacity;
+  z-index: 2;
+}
+.gif-1 { width: 160px; top: 2%;  left: 5%;  animation: burst 3s ease-in-out 0s   infinite; }
+.gif-2 { width: 180px; top: 0%;  left: 35%; animation: burst 3s ease-in-out 0.8s infinite; }
+.gif-3 { width: 160px; top: 2%;  left: 62%; animation: burst 3s ease-in-out 1.6s infinite; }
+.gif-4 { width: 140px; top: 5%;  left: 82%; animation: burst 3s ease-in-out 2.4s infinite; }
+
+.parade-float-img { height: 90px; object-fit: contain; animation: vehicleBounce 0.5s ease-in-out infinite; }
+.parade-march-img { height: 90px; object-fit: contain; animation: bandStep 0.6s ease-in-out infinite; }
+.parade-dog-img   { height: 70px; object-fit: contain; animation: vehicleBounce 0.4s ease-in-out infinite; }
+.header-flag {
+  height: 24px;
+  vertical-align: middle;
+  margin: 0 6px;
+}
+
+.flag-img {
+  width: 120px;
+  height: auto;
+  margin: var(--space-2) auto;
+  display: block;
+  animation: flagWave 2.5s ease-in-out infinite;
   transform-origin: left center;
   will-change: transform;
 }
 
-.eagle,
-.float,
-.dog,
-.veterans,
-.doves,
-.fireworks,
-.band {
-  font-size: 4rem;
-  margin: 15px 0;
-  will-change: transform, opacity;
+.flag-scene {
+  width: 90px;
+  height: auto;
+  display: block;
+  animation: flagWave 2.5s ease-in-out infinite;
+  transform-origin: left center;
+  will-change: transform;
 }
 
-.eagle {
-  animation: fly 4s ease-in-out infinite alternate;
-}
+.eagle    { animation: fly 4s ease-in-out infinite alternate; }
+.float    { animation: drive 4s ease-in-out infinite alternate; }
+.band     { animation: bounce 1.5s ease-in-out infinite; }
+.dog      { animation: bounce 2s ease-in-out infinite; }
+.veterans { animation: salute 2.5s ease-in-out infinite; }
+.doves    { animation: doveFlight 5s ease-in-out infinite; }
+.fireworks{ animation: firework 2.4s ease-in-out infinite; }
 
 .star {
   font-size: 3rem;
+  display: block;
+  margin: var(--space-2) auto;
   animation: sparkle 1.5s ease-in-out infinite;
   will-change: transform, opacity;
 }
 
-.float {
-  animation: drive 4s ease-in-out infinite alternate;
-}
-
-.band {
-  animation: bounce 1.5s ease-in-out infinite;
-}
-
-.dog {
-  animation: bounce 2s ease-in-out infinite;
-}
-
-.veterans {
-  animation: salute 2s ease-in-out infinite;
-}
-
-.doves {
-  animation: doveFly 4s ease-in-out infinite;
-}
-
-.fireworks {
-  animation: firework 2.4s ease-in-out infinite;
-}
-
-.confetti {
-  text-align: center;
-  font-size: 2rem;
-  margin-top: 30px;
-  animation: bounce 2s ease-in-out infinite;
-}
-
 .next-btn {
   display: block;
-  width: 200px;
-  margin: 40px auto;
+  width: fit-content;
+  min-width: 220px;
+  margin: var(--space-4) auto;
   text-align: center;
   background: var(--liberty-red);
   color: white;
-  padding: 12px;
+  padding: 14px var(--space-4);
   border-radius: 8px;
   text-decoration: none;
-  transition: background .3s ease, transform .3s ease;
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+  box-shadow: 0 4px 12px rgba(191,10,48,.3);
 }
 
 .next-btn:hover,
 .next-btn:focus {
   background: var(--patriot-blue);
   color: var(--star-gold);
-  transform: scale(1.08);
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,40,104,.4);
   outline: 3px solid var(--star-gold);
+  outline-offset: 2px;
 }
 
-footer {
-  background: var(--cannon-smoke);
-  color: white;
-  text-align: center;
-  padding: 20px;
-}
 
-/* Animations use transform and opacity only */
-@keyframes wave {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(4deg); }
-  100% { transform: rotate(0deg); }
-}
-
-@keyframes fly {
-  0% { transform: translateX(-20px); }
-  100% { transform: translateX(20px); }
-}
-
-@keyframes drive {
-  0% { transform: translateX(-25px); }
-  100% { transform: translateX(25px); }
-}
-
-@keyframes bounce {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-@keyframes sparkle {
-  0% { transform: scale(.4) rotate(0deg); opacity: 0; }
-  50% { transform: scale(1.3) rotate(90deg); opacity: 1; }
-  100% { transform: scale(.4) rotate(180deg); opacity: 0; }
-}
-
-@keyframes firework {
-  0% { transform: scale(.4) rotate(0deg); opacity: 0; }
-  25% { transform: scale(.8) rotate(45deg); opacity: .5; }
-  50% { transform: scale(1.3) rotate(90deg); opacity: 1; }
-  75% { transform: scale(.9) rotate(135deg); opacity: .7; }
-  100% { transform: scale(.4) rotate(180deg); opacity: 0; }
-}
-
-@keyframes doveFly {
-  0% { transform: translateX(-30px) translateY(10px); opacity: .4; }
-  50% { transform: translateX(10px) translateY(-10px); opacity: 1; }
-  100% { transform: translateX(40px) translateY(-20px); opacity: .4; }
-}
-
-@keyframes salute {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
-}
-
+/* Page hero entrance */
 @keyframes titlePop {
-  0% { opacity: 0; transform: translateY(-20px) scale(.9); }
+  0%   { opacity: 0; transform: translateY(-24px) scale(0.88); }
+  70%  { opacity: 1; transform: translateY(4px) scale(1.03); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Responsive design */
-@media (max-width: 700px) {
-  nav a {
-    display: block;
-    margin: 8px 0;
-  }
+/* Sun rising */
+@keyframes sunRise {
+  0%   { opacity: 0; transform: translateY(40px) scale(0.6); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
 
-  .hero h2 {
-    font-size: 2.2rem;
+/* Flag rising up the pole */
+@keyframes flagRise {
+  0%   { transform: translateY(175px); opacity: 0.3; }
+  100% { transform: translateY(0);     opacity: 1; }
+}
+
+/* Flag waving */
+@keyframes flagWave {
+  0%   { transform: skewY(0deg) scaleX(1); }
+  25%  { transform: skewY(1.5deg) scaleX(0.97); }
+  50%  { transform: skewY(0deg) scaleX(1); }
+  75%  { transform: skewY(-1.5deg) scaleX(0.97); }
+  100% { transform: skewY(0deg) scaleX(1); }
+}
+
+/* Clouds drifting */
+@keyframes cloudDrift {
+  0%   { transform: translateX(-120px); }
+  100% { transform: translateX(calc(100vw + 120px)); }
+}
+
+/* Stars fading at dawn */
+@keyframes starFade {
+  0%   { opacity: 0.9; }
+  100% { opacity: 0.1; }
+}
+
+/* Window glow pulse */
+@keyframes windowGlow {
+  0%   { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Bunting gentle wave */
+@keyframes buntingWave {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
+
+/* Doves taking flight */
+@keyframes doveFlight {
+  0%   { transform: translate(0, 0) rotate(0deg);       opacity: 0; }
+  15%  { opacity: 1; }
+  100% { transform: translate(120px, -80px) rotate(-15deg); opacity: 0; }
+}
+
+/* Veteran salute */
+@keyframes salute {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(-6deg); }
+  75%  { transform: rotate(-6deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Generic bounce */
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+/* Dog tail wag */
+@keyframes tailWag {
+  0%   { transform: rotate(-8deg); }
+  50%  { transform: rotate(8deg); }
+  100% { transform: rotate(-8deg); }
+}
+
+/* Band stepping */
+@keyframes bandStep {
+  0%   { transform: translateY(0) rotate(0deg); }
+  25%  { transform: translateY(-6px) rotate(-3deg); }
+  75%  { transform: translateY(-6px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Eagle / float movement */
+@keyframes fly {
+  0%   { transform: translateX(-20px) translateY(0); }
+  100% { transform: translateX(20px) translateY(-8px); }
+}
+
+@keyframes drive {
+  0%   { transform: translateX(-25px); }
+  100% { transform: translateX(25px); }
+}
+
+/* Confetti falling */
+@keyframes confettiFall {
+  0%   { transform: translateY(-20px) rotate(0deg);   opacity: 1; }
+  100% { transform: translateY(160px) rotate(540deg); opacity: 0; }
+}
+
+/* Parade vehicles moving */
+@keyframes paradeMove {
+  0%   { transform: translateX(-120vw); }
+  100% { transform: translateX(120vw); }
+}
+
+@keyframes vehicleBounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-4px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes horseGallop {
+  0%   { transform: translateY(0) rotate(-2deg); }
+  50%  { transform: translateY(-6px) rotate(2deg); }
+  100% { transform: translateY(0) rotate(-2deg); }
+}
+
+/* Crowd cheering */
+@keyframes cheer {
+  0%   { transform: translateY(0) rotate(0deg); }
+  25%  { transform: translateY(-8px) rotate(-5deg); }
+  75%  { transform: translateY(-8px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes childWave {
+  0%   { transform: rotate(-10deg); }
+  50%  { transform: rotate(10deg); }
+  100% { transform: rotate(-10deg); }
+}
+
+@keyframes sparklerWave {
+  0%   { transform: translateY(0) rotate(-5deg); }
+  50%  { transform: translateY(-6px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(-5deg); }
+}
+
+/* Baton twirl */
+@keyframes twirl {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Firework burst */
+@keyframes burst {
+  0%   { transform: scale(0.2) translateY(30px); opacity: 0; }
+  20%  { opacity: 1; }
+  50%  { transform: scale(1.4) translateY(0);   opacity: 1; }
+  80%  { opacity: 0.5; }
+  100% { transform: scale(0.6) translateY(-10px); opacity: 0; }
+}
+
+/* Night star twinkle */
+@keyframes twinkle {
+  0%   { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* Watcher sway */
+@keyframes watcherSway {
+  0%   { transform: rotate(-3deg); }
+  50%  { transform: rotate(3deg); }
+  100% { transform: rotate(-3deg); }
+}
+
+/* Sparkle for stars */
+@keyframes sparkle {
+  0%   { transform: scale(0.4) rotate(0deg);   opacity: 0; }
+  50%  { transform: scale(1.3) rotate(90deg);  opacity: 1; }
+  100% { transform: scale(0.4) rotate(180deg); opacity: 0; }
+}
+
+@media (max-width: 700px) {
+  nav { gap: var(--space-2); }
+  nav a { font-size: 0.85rem; padding: 3px 7px; }
+
+  header h1 { font-size: 1.2rem; }
+
+  .town-square-scene,
+  .parade-scene,
+  .fireworks-scene { height: 220px; }
+
+  .flagpole::after { height: 140px; }
+  .flag-container  { }
+
+  .building { width: 90px; height: 110px; }
+
+  .crowd-row { bottom: 60px; }
+  .figure    { font-size: 1.2rem; }
+
+  .content-grid { grid-template-columns: 1fr; }
+
+  .eagle, .float, .dog, .veterans, .doves, .fireworks, .band {
+    font-size: 2.5rem;
   }
 }
 
-/* Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition: none !important;
